@@ -8,23 +8,29 @@ object MyModule {
     if (n < 0) -n
     else n
 
-  private def formatAbs(x: Int) = {
-    val msg = "The absolute value of %d is %d"
-    msg.format(x, abs(x))
-  }
-
-  def main(args: Array[String]): Unit =
-    println(formatAbs(-42))
-
   // A definition of factorial, using a local, tail recursive function
   def factorial(n: Int): Int = {
     @annotation.tailrec
     def go(n: Int, acc: Int): Int =
       if (n <= 0) acc
-      else go(n-1, n*acc)
-
+      else go(n - 1, n * acc)
     go(n, 1)
   }
+
+  private def formatAbs(x: Int) = {
+    val msg = "The absolute value of %d is %d"
+    msg.format(x, abs(x))
+  }
+
+  def main(args: Array[String]): Unit = {
+    println(formatResult("absolute value", -42, abs))
+    println(formatResult("factorial", 7, factorial))
+  }
+
+
+
+
+
 
   // Another implementation of `factorial`, this time with a `while` loop
   def factorial2(n: Int): Int = {
